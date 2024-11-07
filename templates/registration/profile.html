@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Pastebin{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
+  <div class="flex items-center space-x-4 mb-8">
+    <div class="bg-blue-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl">
+      {{ user.username|first|upper }}
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold">{{ user.username }}</h2>
+      <p class="text-gray-600">Member since {{ user.date_joined|date }}</p>
+    </div>
+  </div>
+
+  <div class="border-t pt-6">
+    <h3 class="text-xl font-semibold mb-4">Your Snippets</h3>
+    {% if user.snippets.all %}
+    <div class="space-y-4">
+      {% for snippet in user.snippets.all %}
+      <div class="border rounded-lg p-4">
+        <h4 class="font-semibold">
+          <a href="{% url 'snippet-detail' snippet.pk %}" class="text-blue-500 hover:text-blue-600">
+            {{ snippet.title|default:"Untitled" }}
+          </a>
+        </h4>
+        <p class="text-gray-600 text-sm">Created: {{ snippet.created|date }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-600">You haven't created any snippets yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -135,6 +135,9 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
+LOGIN_URL = "/login/"
+LOGOUT_REDIRECT_URL = "snippet-list"
+LOGIN_REDIRECT_URL = "profile"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
