@@ -1,0 +1,23 @@
+{% if page_obj %}
+<div class="flex justify-center mt-8">
+  <nav class="inline-flex rounded-md shadow">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}"
+      class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+      Previous
+    </a>
+    {% endif %}
+
+    <span class="px-3 py-2 border border-gray-300 bg-white text-gray-700">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}"
+      class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+      Next
+    </a>
+    {% endif %}
+  </nav>
+</div>
+{% endif %}

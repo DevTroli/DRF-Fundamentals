@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ snippet.title|default:"Untitled" }} - Pastebin{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md">
+  <div class="p-6">
+    <div class="flex justify-between items-start mb-6">
+      <div>
+        <h1 class="text-2xl font-bold mb-2">{{ snippet.title|default:"Untitled" }}</h1>
+        <div class="text-gray-600">
+          <p>Created by {{ snippet.owner.username }}</p>
+          <p>{{ snippet.created|date }}</p>
+        </div>
+      </div>
+
+      {% if user == snippet.owner %}
+      <div class="space-x-2">
+        <a href="{% url 'snippet-update' snippet.pk %}"
+          class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Edit
+        </a>
+        <a href="{% url 'snippet-delete' snippet.pk %}"
+          class="inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+          Delete
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="mb-4 flex items-center space-x-2">
+      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-sm">{{ snippet.language }}</span>
+      {% if snippet.is_private %}
+      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-sm">Private</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="border-t">
+    <pre><code class="language-{{ snippet.language }}">{{ snippet.code }}</code></pre>
+  </div>
+</div>
+{% endblock %}

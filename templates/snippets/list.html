@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Snippets - Pastebin{% endblock %}
+
+{% block content %}
+<div class="mb-6 flex justify-between items-center">
+  <h1 class="text-2xl font-bold">Code Snippets</h1>
+  <a href="{% url 'snippet-create' %}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+    New Snippet
+  </a>
+</div>
+
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {% for snippet in snippets %}
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-start mb-4">
+      <h2 class="text-xl font-semibold">
+        <a href="{% url 'snippet-detail' snippet.pk %}" class="text-blue-500 hover:text-blue-600">
+          {{ snippet.title|default:"Untitled" }}
+        </a>
+      </h2>
+      {% if snippet.is_private %}
+      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-sm">Private</span>
+      {% endif %}
+    </div>
+
+    <div class="text-gray-600 text-sm mb-4">
+      <p>Created by {{ snippet.owner.username }}</p>
+      <p>{{ snippet.created|date }}</p>
+    </div>
+
+    <div class="text-gray-600">
+      <span class="bg-gray-100 px-2 py-1 rounded text-sm">{{ snippet.language }}</span>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-gray-600 col-span-full text-center py-8">No snippets found.</p>
+  {% endfor %}
+</div>
+
+{% include "includes/pagination.html" %}
+{% endblock %}

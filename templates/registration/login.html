@@ -1,0 +1,33 @@
+<!-- login.html -->
+{% extends "base.html" %}
+
+{% block title %}Login - Pastebin{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+  <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div>
+      <label class="block text-gray-700 mb-2">{{ field.label }}</label>
+      {{ field|addclass:"w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2
+      focus:ring-blue-500" }}
+      {% if field.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ field.errors|join:", " }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+      Login
+    </button>
+  </form>
+
+  <p class="mt-4 text-center text-gray-600">
+    Don't have an account? <a href="{% url 'register' %}" class="text-blue-500 hover:text-blue-600">Sign up</a>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}PasteBin{% endblock %}</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Highlight.js para syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="min-h-screen bg-gray-50">
+  {% include "includes/header.html" %}
+
+  {% include "includes/messages.html" %}
+
+  <main class="container mx-auto px-4 py-8">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  {% include "includes/footer.html" %}
+
+  <script>
+    hljs.highlightAll();
+  </script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+
+</html>
