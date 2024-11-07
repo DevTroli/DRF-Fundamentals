@@ -1,123 +1,130 @@
 # 📦 CodeCache - Modern Snippets Sharing Platform
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/DevTroli/PasteBin)
-[![Status do Projeto][status-shield]][status-url]
-[![Licença][license-shield]][license-url]
+[![Project Status][status-shield]][status-url]
+[![License][license-shield]][license-url]
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Django Version](https://img.shields.io/badge/django-5.0.1-green)
 
-## 🌟 Visão Geral
-CodeCache é uma plataforma moderna de compartilhamento de código inspirada no projetos Pastebin, construída com Django e Django REST Framework. Oferece syntax highlighting, controle de expiração, privacidade e uma interface moderna com Tailwind CSS.
+## 🌟 Overview
+CodeCache is a modern code sharing platform inspired by Pastebin, built with Django and Django REST Framework. It offers syntax highlighting, expiration control, privacy, and a modern interface with Tailwind CSS.
 
-## ✨ Funcionalidades
-- 🚀 Gerenciamento de Snippets
-  - Criação e edição de snippets de código
-  - Syntax highlighting para múltiplas linguagens
-  - Expiração automática de snippets
-  - Controle de privacidade
+## ✨ Features
+- 🚀 Snippet Management
+  - Create and edit code snippets
+  - Syntax highlighting for multiple languages
+  - Automatic expiration of snippets
+  - Privacy control
   
-- 👤 Sistema de Usuários
-  - Registro e autenticação
-  - Perfis de usuário personalizados
-  - Gerenciamento de snippets próprios
+- 👤 User System
+  - Registration and authentication
+  - Customized user profiles
+  - Manage own snippets
   
-- 🔌 API RESTful
-  - Endpoints completos para CRUD
-  - Autenticação via token
-  - Documentação interativa
+- 🔌 RESTful API
+  - Complete CRUD endpoints
+  - Token-based authentication
+  - Interactive documentation
   
-- 🎨 Interface Moderna
-  - Design responsivo com Tailwind CSS
-  - Temas de syntax highlighting
-  - Suporte a linha numerada
+- 🎨 Modern Interface
+  - Responsive design with Tailwind CSS
+  - Syntax highlighting themes
+  - Line number support
 
-## 🛠️ Tecnologias
-- [Django 5.0.1](https://www.djangoproject.com/) - Framework web Python de alto nível
-- [Django REST Framework 3.14.0](https://www.django-rest-framework.org/) - Toolkit poderoso para construir Web APIs
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utility-first
-- [Pygments 2.17.2](https://pygments.org/) - Biblioteca de syntax highlighting
-- [django-cors-headers 4.3.1](https://github.com/adamchainz/django-cors-headers) - Gerenciamento de CORS para Django
+## 🛠️ Technologies
+- [Django 5.0.1](https://www.djangoproject.com/) - High-level Python web framework
+- [Django REST Framework 3.14.0](https://www.django-rest-framework.org/) - Powerful toolkit for building Web APIs
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Pygments 2.17.2](https://pygments.org/) - Syntax highlighting library
+- [django-cors-headers 4.3.1](https://github.com/adamchainz/django-cors-headers) - CORS management for Django
 
-## 🚀 Instalação
-1. Clone o repositório:
+## 🚀 Installation
+<details>
+<summary>📖 Guide Step-by-Step</summary>
+  
+1. Clone the repository:
 ```bash
 git clone https://github.com/DevTroli/PasteBin.git && cd PasteBin
 ```
 
-2. Crie e ative um ambiente virtual:
+2. Create and activate a virtual environment:
 ```bash
-python -m venv .venv --clear && source .venv/bin/activate  # ou venv\Scripts\activate  # Windows
+python -m venv .venv --clear && source .venv/bin/activate  # or venv\Scripts\activate  # Windows
 ```
 
-3. Instale as dependências:
+3. Install the dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configure o banco de dados:
+4. Set up the database:
 ```bash
 python manage.py migrate
 ```
+</details>
 
-## 💻 Uso
-1. Inicie o servidor de desenvolvimento:
+## 💻 Usage
+1. Start the development server:
 ```bash
 python manage.py createsuperuser && python manage.py runserver
 ```
 
-2. Acesse os endpoints:
+2. Access the endpoints:
 * Web Interface: http://127.0.0.1:8000
 * API Root: http://127.0.0.1:8000/api/
 * Admin Interface: http://127.0.0.1:8000/admin/
 
 ## 🔌 API Endpoints
 ### Snippets
-* `GET /api/snippets/` - Lista todos os snippets
-* `POST /api/snippets/` - Cria novo snippet
-* `GET /api/snippets/{id}/` - Detalhes do snippet
-* `PUT /api/snippets/{id}/` - Atualiza snippet
-* `DELETE /api/snippets/{id}/` - Remove snippet
-* `GET /api/snippets/{id}/highlight/` - Versão highlighted do snippet
+* `GET /api/snippets/` - List all snippets
+* `POST /api/snippets/` - Create a new snippet
+* `GET /api/snippets/{id}/` - Snippet details
+* `PUT /api/snippets/{id}/` - Update a snippet
+* `DELETE /api/snippets/{id}/` - Delete a snippet
+* `GET /api/snippets/{id}/highlight/` - Highlighted version of the snippet
 
-### Usuários
-* `GET /api/users/` - Lista usuários
-* `GET /api/users/{id}/` - Detalhes do usuário
+### Users
+* `GET /api/users/` - List users
+* `GET /api/users/{id}/` - User details
 
-## 🔧 Desenvolvimento
-#### Estrutura do Projeto
+## 🔧 Development
+<details>
+<summary>📖 How it all works</summary>
+
+#### Project Structure
 ```
 PasteBin/
-├── manage.py
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-├── README.md
+├── manage.py  # The main Django management script
+├── requirements.txt  # The project dependencies
+├── .gitignore  # Ignored files for Git
+├── LICENSE  # Project license
+├── README.md  # Project documentation
 ├── contrib/
-│   ├── envGen.py
+│   ├── envGen.py  # Script to generate environment variables
 ├── setup/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│   └── __init__.py
+│   ├── settings.py  # Django project settings
+│   ├── urls.py  # Django URL configuration
+│   └── wsgi.py  # WSGI server configuration
+│   └── __init__.py  # Python package initialization
 ├── snippets/
-│   ├── migrations/
-│   ├── templatetags/
-│   ├── __init__.py
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   └── urls.py
-│   └── tests.py
-│   └── apps.py
+│   ├── migrations/  # Django database migrations
+│   ├── templatetags/  # Custom Django template tags
+│   ├── __init__.py  # Python package initialization
+│   ├── models.py  # Django models for the Snippets app
+│   ├── serializers.py  # Django REST Framework serializers
+│   ├── views.py  # Django views for the Snippets app
+│   └── urls.py  # URLs for the Snippets app
+│   └── tests.py  # Tests for the Snippets app
+│   └── apps.py  # Django app configuration
 ├── staticfiles/
-│   ├── admin/
-│   ├── django_extentions/
-│   ├── rest_framework/
+│   ├── admin/  # Static files for the Django admin interface
+│   ├── django_extentions/  # Static files for Django extensions
+│   ├── rest_framework/  # Static files for Django REST Framework
 └── templates/
-    ├── base.html
-    ├── includes/
-    ├── registration/
-    └── snippets/
+    ├── base.html  # The main base template
+    ├── includes/  # Additional template partials
+    ├── registration/  # Templates for user registration and authentication
+    └── snippets/  # Templates for the Snippets app
 ```
 
 #### Configure environment variables
@@ -125,31 +132,32 @@ PasteBin/
 python contrib/envGen.py
 # Don't forget to add your database access to .env
 ```
+</details>
 
-## 🧪 Testes
-Execute os testes com:
+## 🧪 Testing
+Run the tests with:
 ```bash
 python manage.py test
 ```
 
-## 👥 Como Contribuir
-1. Faça um Fork do projeto
-2. Crie sua Feature Branch (`git checkout -b NewFeatureAmazing`)
-3. Faça commit das suas alterações (`git commit -m 'Add some AmazingFeature'`)
-4. Faça Push para a Branch (`git push origin NewFeatureAmazing`)
-5. Abra um Pull Request
+## 👥 How to Contribute
+1. Fork the project
+2. Create your Feature Branch (`git checkout -b NewFeatureAmazing`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin NewFeatureAmazing`)
+5. Open a Pull Request
 
-## 📄 Licença
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📬 Contato
+## 📬 Contact
 [@DevTroli](https://github.com/DevTroli) - pablotroli@outlook.com
 
 ---
-⭐️ Feito com ❤️ por @DevTroli
+⭐️ Made with ❤️ by @DevTroli
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[status-shield]: https://img.shields.io/badge/status-ativo-success.svg
+[status-shield]: https://img.shields.io/badge/status-active-success.svg
 [status-url]: #
 [version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg
 [version-url]: #
