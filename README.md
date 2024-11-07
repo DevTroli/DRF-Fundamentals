@@ -1,11 +1,13 @@
-# 📦 DjangoBin - Modern Code Sharing Platform
+# 📦 CodeCache - Modern Snippets Sharing Platform
 
-![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/djangobin)
+![GitHub repo size](https://img.shields.io/github/repo-size/DevTroli/PasteBin)
+[![Status do Projeto][status-shield]][status-url]
+[![Licença][license-shield]][license-url]
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Django Version](https://img.shields.io/badge/django-5.0.1-green)
 
 ## 🌟 Visão Geral
-DjangoBin é uma plataforma moderna de compartilhamento de código inspirada no Pastebin, construída com Django e Django REST Framework. Oferece syntax highlighting, controle de expiração, privacidade e uma interface moderna com Tailwind CSS.
+CodeCache é uma plataforma moderna de compartilhamento de código inspirada no projetos Pastebin, construída com Django e Django REST Framework. Oferece syntax highlighting, controle de expiração, privacidade e uma interface moderna com Tailwind CSS.
 
 ## ✨ Funcionalidades
 - 🚀 Gerenciamento de Snippets
@@ -39,15 +41,12 @@ DjangoBin é uma plataforma moderna de compartilhamento de código inspirada no 
 ## 🚀 Instalação
 1. Clone o repositório:
 ```bash
-git clone https://github.com/yourusername/djangobin.git
-cd djangobin
+git clone https://github.com/DevTroli/PasteBin.git && cd PasteBin
 ```
 
 2. Crie e ative um ambiente virtual:
 ```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate  # Windows
+python -m venv .venv --clear && source .venv/bin/activate  # ou venv\Scripts\activate  # Windows
 ```
 
 3. Instale as dependências:
@@ -63,13 +62,13 @@ python manage.py migrate
 ## 💻 Uso
 1. Inicie o servidor de desenvolvimento:
 ```bash
-python manage.py runserver
+python manage.py createsuperuser && python manage.py runserver
 ```
 
 2. Acesse os endpoints:
-* Web Interface: http://localhost:8000
-* API Root: http://localhost:8000/api/
-* Admin Interface: http://localhost:8000/admin/
+* Web Interface: http://127.0.0.1:8000
+* API Root: http://127.0.0.1:8000/api/
+* Admin Interface: http://127.0.0.1:8000/admin/
 
 ## 🔌 API Endpoints
 ### Snippets
@@ -85,32 +84,46 @@ python manage.py runserver
 * `GET /api/users/{id}/` - Detalhes do usuário
 
 ## 🔧 Desenvolvimento
-### Estrutura do Projeto
+#### Estrutura do Projeto
 ```
-pastebin_project/
+PasteBin/
 ├── manage.py
 ├── requirements.txt
-├── pastebin/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── contrib/
+│   ├── envGen.py
+├── setup/
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
+│   └── __init__.py
 ├── snippets/
+│   ├── migrations/
+│   ├── templatetags/
+│   ├── __init__.py
 │   ├── models.py
 │   ├── serializers.py
 │   ├── views.py
 │   └── urls.py
+│   └── tests.py
+│   └── apps.py
+├── staticfiles/
+│   ├── admin/
+│   ├── django_extentions/
+│   ├── rest_framework/
 └── templates/
     ├── base.html
     ├── includes/
+    ├── registration/
     └── snippets/
 ```
 
-### Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto:
-```env
-SECRET_KEY=your-secret-key
-DEBUG=True
-DATABASE_URL=sqlite:///db.sqlite3
+#### Configure environment variables
+```bash
+python contrib/envGen.py
+# Don't forget to add your database access to .env
 ```
 
 ## 🧪 Testes
@@ -121,17 +134,24 @@ python manage.py test
 
 ## 👥 Como Contribuir
 1. Faça um Fork do projeto
-2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
+2. Crie sua Feature Branch (`git checkout -b NewFeatureAmazing`)
 3. Faça commit das suas alterações (`git commit -m 'Add some AmazingFeature'`)
-4. Faça Push para a Branch (`git push origin feature/AmazingFeature`)
+4. Faça Push para a Branch (`git push origin NewFeatureAmazing`)
 5. Abra um Pull Request
 
 ## 📄 Licença
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## 📬 Contato
-Seu Nome - seuemail@example.com
-Link do Projeto: https://github.com/yourusername/djangobin
+[@DevTroli](https://github.com/DevTroli) - pablotroli@outlook.com
 
 ---
 ⭐️ Feito com ❤️ por @DevTroli
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[status-shield]: https://img.shields.io/badge/status-ativo-success.svg
+[status-url]: #
+[version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg
+[version-url]: #
+[license-shield]: https://img.shields.io/badge/license-MIT-green.svg
+[license-url]: #
